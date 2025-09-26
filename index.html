@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of an AI & ML enthusiast with expertise in IoT and web development.">
+    <title>Abhinav's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        :root {
+            --background: #f9f9f9;
+            --text-color: #333;
+            --card-background: #ffffff;
+            --card-hover: #f0f0f0;
+            --highlight: #20c997;
+        }
+
+        .dark-mode {
+            --background: #121212;
+            --text-color: #e0e0e0;
+            --card-background: #1e1e1e;
+            --card-hover: #333;
+            --highlight: #bb86fc;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: var(--card-background);
+            border-bottom: 2px solid #ddd;
+            position: relative;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            color: var(--highlight);
+            font-weight: 700;
+        }
+
+        .hamburger {
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--highlight);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            background: var(--highlight);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: #18a383;
+        }
+
+        .typing-container {
+            display: inline;
+            white-space: pre-wrap;
+            border-right: 3px solid var(--highlight);
+            animation: blink 0.75s step-end infinite; /* Cursor blinking */
+        }
+
+        /* Cursor blinking effect */
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .cv-button {
+            display: inline-block;
+            margin-top: 20px; /* Keeps it below the paragraph */
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .hero img {
+            width: 100%;
+            max-width: 400px; /* Limit max width */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .hero .content {
+            max-width: 600px;
+            flex: 1; /* Allow content to grow */
+            margin-right: 2rem; /* Space between image and text */
+        }
+
+        .hero .content h1 {
+            font-size: 3rem;
+            color: var(--highlight);
+            margin-bottom: 1rem;
+        }
+
+        .hero .content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .hero .content a {
+            display: inline-block;
+            background-color: var(--highlight);
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .content a:hover {
+            background-color: #18a383;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2.5rem;
+            color: var(--highlight);
+        }
+
+        .projects, .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .project-card, .skill-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .project-card:hover, .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: var(--card-hover);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .project-card a {
+            color: var(--highlight);
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-card a:hover {
+            color: #18a383;
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--highlight);
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Social Media */
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social a {
+            color: var(--highlight);
+            font-size: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: #18a383;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            border-top: 2px solid #ddd;
+        }
+
+        footer a {
+            color: var(--highlight);
+            text-decoration: none;
+        }
+
+        /* Contact Form Modal Styles */
+        .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+button1 {
+    background-color: #18a383; /* Green */
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button1:hover {
+    background-color: #bb86fc; /* Darker green */
+}
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        .contact label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .contact input, .contact textarea {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact button {
+            background-color: var(--highlight);
+            color: #fff;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact button:hover {
+            background: #18a383;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block; /* Show hamburger icon on small screens */
+            }
+
+            nav {
+                text-align: left; /* Align nav to the left */
+            }
+
+            nav ul {
+                display: none; /* Hide nav links by default */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute;
+                top: 60px; /* Position below the header */
+                right: 0;
+                background-color: var(--card-background);
+                width: 100%;
+                padding: 1rem 0;
+                z-index: 1000; /* Ensure it appears above other content */
+            }
+
+            nav ul.active {
+                display: flex; /* Show nav links when active */
+            }
+
+            nav ul li {
+                text-align: center; /* Center align links */
+                padding: 1rem 0; /* Add padding for touch targets */
+            }
+
+            .hero {
+                flex-direction: column; /* Stack image and content vertically */
+                align-items: center; /* Center align items */
+            }
+
+            .hero img {
+                max-width: 100%; /* Make image responsive */
+                margin-bottom: 2rem; /* Space below image */
+            }
+
+            .hero .content {
+                margin-right: 0; /* Remove right margin */
+                text-align: center; /* Center align text */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Abhinav</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" onclick="toggleTheme()">Dark Mode</button>
+    </header>
+
+    <section class="hero">
+        <img src="abhinavimg.png" alt="Profile Picture" width="800" height="800">
+        <div class="content">
+            <h1>Hello, </h1>
+            <p id="typing-text" class="typing-container blinking"></p>
+            <br>
+            <a href="#" class="cv-button">Download CV</a>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>IoT Based</h3>
+                <p>Smart door bell system using ESP 32 and C++</p>
+                <a href="pp1.html">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Weather Prediction using ML</h3>
+                <p>Machine learning model to predict weather using historical data.</p>
+                <a href="pp2.html">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>This portfolio showcasing web development and UI/UX skills.</p>
+                <a href="pp3.html">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills">
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-microchip"></i>
+                <h3>IoT</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>Web Development</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Data Analysis</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-brain"></i>
+                <h3>Machine Learning</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="social-media">
+        <h2 class="section-title">Follow Me</h2>
+        <div class="social">
+            <a href="https://in.linkedin.com/in/abhinavbit" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.geeksforgeeks.org/user/abhinavvsgw/" target="_blank"><i class="fas fa-code"></i></a>
+            <a href="https://github.com/Abhinav9263" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/Abhinav1898960?t=J7p7iJAYg1tWDhXD8IS8bA&s=09" target="_blank"><i class="fab fa-x"></i></a> <!-- Updated Twitter icon to X -->
+        </div>
+    </section>
+
+    <footer>
+        <p> Made with ❤️ | © 2025 Abhinav <a href="#" onclick="openModal()">Contact Me</a></p>
+    </footer>
+
+    <!-- Modal for Contact Form -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Contact Me</h2>
+            <form action="https://formspree.io/f/movjgaol" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+    
+                <button1 type="submit">Send Message</button1>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const toggleTheme = () => {
+            document.body.classList.toggle('dark-mode');
+        };
+    
+        const toggleMenu = () => {
+            const navList = document.querySelector('.nav-list');
+            navList.classList.toggle('active');
+        };
+    
+        // Function to open the contact modal
+        const openModal = () => {
+            document.getElementById("contactModal").style.display = "block";
+        };
+    
+        // Function to close the contact modal
+        const closeModal = () => {
+            document.getElementById("contactModal").style.display = "none";
+        };
+    
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            const modal = document.getElementById("contactModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            const text = "I’m Abhinav, a Computer Science Engineering student specializing in Artificial Intelligence (AI) and Machine Learning (ML). Passionate about leveraging technology to solve real-world challenges, I focus on developing innovative solutions in AI, ML, and IoT. My expertise also extends to web design, data analysis, and graphic design, allowing me to create both technically robust and visually appealing solutions.";
+            
+            let index = 0;
+            const speed = 30; // Adjust typing speed
+            const typingText = document.getElementById("typing-text");
+    
+            function typeEffect() {
+                if (index < text.length) {
+                    typingText.textContent += text.charAt(index); // No movement, only typing
+                    index++;
+                    setTimeout(typeEffect, speed);
+                }
+            }
+    
+            setTimeout(typeEffect, 500);
+        });
+    </script>
